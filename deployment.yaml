@@ -1,26 +1,28 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: v1
+kind: Namespace
 metadata:
-  name: agent-deployment-dev
-  namespace: development
-  labels:
-    app: agent
-spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      app: agent
-  template:
-    metadata:
-      labels:
-        app: agent
-    spec:
-      containers:
-      - name: agent-container
-        image: nginx:latest
-        ports:
-        - containerPort: 80
+  name: cosmic-debug-agent
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cosmic-debug-win
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cosmic-debug-linux
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cosmic-debug-cpr
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: cosmic-debug-podsniff
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -41,6 +43,7 @@ spec:
     spec:
       containers:
       - name: agent-container
-        image: httpd:latest
+        image: nginx:latest
         ports:
         - containerPort: 80
+
